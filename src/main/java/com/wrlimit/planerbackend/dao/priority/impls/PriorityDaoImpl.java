@@ -1,0 +1,44 @@
+package com.wrlimit.planerbackend.dao.priority.impls;
+
+import com.wrlimit.planerbackend.dao.priority.interfaces.IPriorityDao;
+import com.wrlimit.planerbackend.model.Priority;
+import com.wrlimit.planerbackend.repository.PriorityMongoRepository;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+@Component
+public class PriorityDaoImpl implements IPriorityDao {
+    private final PriorityMongoRepository priorityRepository;
+
+    public PriorityDaoImpl(PriorityMongoRepository priorityRepository) {
+        this.priorityRepository = priorityRepository;
+    }
+
+    @Override
+    public Priority create(Priority priority) {
+        return priorityRepository.save(priority);
+    }
+
+    @Override
+    public Priority get(Long id) {
+        return priorityRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Priority update(Priority priority) {
+        return priorityRepository.save(priority);
+    }
+
+    @Override
+    public Priority delete(Long id) {
+        Priority priority = this.get(id);
+        priorityRepository.deleteById(id);
+        return priority;
+    }
+
+    @Override
+    public List<Priority> getAll() {
+        return priorityRepository.findAll();
+    }
+}
