@@ -2,9 +2,7 @@ package com.wrlimit.planerbackend.controller.rest;
 
 import com.wrlimit.planerbackend.model.Category;
 import com.wrlimit.planerbackend.service.category.interfaces.ICategoryService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,6 +14,26 @@ public class CategoryRestController {
 
     public CategoryRestController(ICategoryService categoryService) {
         this.categoryService = categoryService;
+    }
+
+    @PostMapping("/create")
+    public Category create(@RequestBody Category category) {
+        return categoryService.create(category);
+    }
+
+    @GetMapping("/get/{id}")
+    public Category get(@PathVariable("id") Integer id) {
+        return categoryService.get(id);
+    }
+
+    @PostMapping("/update")
+    public Category update(@RequestBody Category category) {
+        return categoryService.update(category);
+    }
+
+    @GetMapping("/delete/{id}")
+    public Category delete(@PathVariable("id") Integer id) {
+        return categoryService.delete(id);
     }
 
     @RequestMapping("/list")

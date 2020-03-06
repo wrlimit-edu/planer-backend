@@ -3,6 +3,7 @@ package com.wrlimit.planerbackend.service.category.impls;
 import com.wrlimit.planerbackend.dao.category.interfaces.ICategoryDao;
 import com.wrlimit.planerbackend.model.Category;
 import com.wrlimit.planerbackend.service.category.interfaces.ICategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 public class CategoryServiceImpl implements ICategoryService {
     private final ICategoryDao categoryDao;
 
+    @Autowired
     public CategoryServiceImpl(ICategoryDao categoryDao) {
         this.categoryDao = categoryDao;
     }
@@ -21,7 +23,7 @@ public class CategoryServiceImpl implements ICategoryService {
     }
 
     @Override
-    public Category get(Long id) {
+    public Category get(Integer id) {
         return categoryDao.get(id);
     }
 
@@ -31,7 +33,7 @@ public class CategoryServiceImpl implements ICategoryService {
     }
 
     @Override
-    public Category delete(Long id) {
+    public Category delete(Integer id) {
         return categoryDao.delete(id);
     }
 

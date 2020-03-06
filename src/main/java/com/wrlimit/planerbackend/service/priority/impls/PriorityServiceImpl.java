@@ -3,6 +3,8 @@ package com.wrlimit.planerbackend.service.priority.impls;
 import com.wrlimit.planerbackend.dao.priority.interfaces.IPriorityDao;
 import com.wrlimit.planerbackend.model.Priority;
 import com.wrlimit.planerbackend.service.priority.interfaces.IPriorityService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +13,8 @@ import java.util.List;
 public class PriorityServiceImpl implements IPriorityService {
     private final IPriorityDao priorityDao;
 
-    public PriorityServiceImpl(IPriorityDao priorityDao) {
+    @Autowired
+    public PriorityServiceImpl(@Qualifier("mongo") IPriorityDao priorityDao) {
         this.priorityDao = priorityDao;
     }
 
@@ -21,7 +24,7 @@ public class PriorityServiceImpl implements IPriorityService {
     }
 
     @Override
-    public Priority get(Long id) {
+    public Priority get(Integer id) {
         return priorityDao.get(id);
     }
 
@@ -31,7 +34,7 @@ public class PriorityServiceImpl implements IPriorityService {
     }
 
     @Override
-    public Priority delete(Long id) {
+    public Priority delete(Integer id) {
         return priorityDao.delete(id);
     }
 

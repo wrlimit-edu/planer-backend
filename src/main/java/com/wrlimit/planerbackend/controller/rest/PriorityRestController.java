@@ -2,9 +2,7 @@ package com.wrlimit.planerbackend.controller.rest;
 
 import com.wrlimit.planerbackend.model.Priority;
 import com.wrlimit.planerbackend.service.priority.interfaces.IPriorityService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,6 +14,26 @@ public class PriorityRestController {
 
     public PriorityRestController(IPriorityService priorityService) {
         this.priorityService = priorityService;
+    }
+
+    @PostMapping("/create")
+    public Priority create(@RequestBody Priority priority) {
+        return priorityService.create(priority);
+    }
+
+    @GetMapping("/get/{id}")
+    public Priority get(@PathVariable("id") Integer id) {
+        return priorityService.get(id);
+    }
+
+    @PostMapping("/update")
+    public Priority update(@RequestBody Priority priority) {
+        return priorityService.update(priority);
+    }
+
+    @GetMapping("/delete/{id}")
+    public Priority delete(@PathVariable("id") Integer id) {
+        return priorityService.delete(id);
     }
 
     @RequestMapping("/list")

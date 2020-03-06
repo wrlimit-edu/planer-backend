@@ -9,7 +9,7 @@ import java.util.Objects;
 @Document
 public class Task {
     @Id
-    private Long id;
+    private Integer id;
     private String name;
     private Category category;
     private Priority priority;
@@ -27,7 +27,7 @@ public class Task {
         this.date = date;
     }
 
-    public Task(Long id, String name, Category category, Priority priority, boolean completed, LocalDate date) {
+    public Task(Integer id, String name, Category category, Priority priority, boolean completed, LocalDate date) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -36,11 +36,11 @@ public class Task {
         this.date = date;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

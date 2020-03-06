@@ -4,8 +4,8 @@ import java.util.List;
 
 public interface IGenericService<T> {
     T create(T t);
-    T get(Long id);
+    T get(Integer id);
     T update(T t);
-    T delete(Long id);
+    T delete(Integer id);
     List<T> getAll();
 }

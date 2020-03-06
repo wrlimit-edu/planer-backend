@@ -1,27 +1,33 @@
 package com.wrlimit.planerbackend.dao.task.impls;
 
 import com.wrlimit.planerbackend.dao.task.interfaces.ITaskDao;
+import com.wrlimit.planerbackend.model.Category;
 import com.wrlimit.planerbackend.model.Task;
 import com.wrlimit.planerbackend.repository.TaskMongoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
-public class TaskDaoImpl implements ITaskDao {
+public class TaskDaoMongoImpl implements ITaskDao {
     private final TaskMongoRepository taskRepository;
 
-    public TaskDaoImpl(TaskMongoRepository taskRepository) {
+    @Autowired
+    public TaskDaoMongoImpl(TaskMongoRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
 
     @Override
     public Task create(Task task) {
+        Integer lastId = this.getAll().stream()
+                .mapToInt(Task::getId).max().orElse(0);
+        task.setId(lastId + 1);
         return taskRepository.save(task);
     }
 
     @Override
-    public Task get(Long id) {
+    public Task get(Integer id) {
         return taskRepository.findById(id).orElse(null);
     }
 
@@ -31,7 +37,7 @@ public class TaskDaoImpl implements ITaskDao {
     }
 
     @Override
-    public Task delete(Long id) {
+    public Task delete(Integer id) {
         Task task = this.get(id);
         taskRepository.deleteById(id);
         return task;

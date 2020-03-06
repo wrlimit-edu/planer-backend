@@ -8,7 +8,7 @@ import java.util.Objects;
 @Document
 public class Category {
     @Id
-    private Long id;
+    private Integer id;
     private String name;
     private String icon;
 
@@ -20,17 +20,17 @@ public class Category {
         this.icon = icon;
     }
 
-    public Category(Long id, String name, String icon) {
+    public Category(Integer id, String name, String icon) {
         this.id = id;
         this.name = name;
         this.icon = icon;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

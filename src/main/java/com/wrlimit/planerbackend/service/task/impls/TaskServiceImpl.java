@@ -3,6 +3,7 @@ package com.wrlimit.planerbackend.service.task.impls;
 import com.wrlimit.planerbackend.dao.task.interfaces.ITaskDao;
 import com.wrlimit.planerbackend.model.Task;
 import com.wrlimit.planerbackend.service.task.interfaces.ITaskService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,10 +12,10 @@ import java.util.List;
 public class TaskServiceImpl implements ITaskService {
     private final ITaskDao taskDao;
 
+    @Autowired
     public TaskServiceImpl(ITaskDao taskDao) {
         this.taskDao = taskDao;
     }
-
 
     @Override
     public Task create(Task task) {
@@ -22,7 +23,7 @@ public class TaskServiceImpl implements ITaskService {
     }
 
     @Override
-    public Task get(Long id) {
+    public Task get(Integer id) {
         return taskDao.get(id);
     }
 
@@ -32,7 +33,7 @@ public class TaskServiceImpl implements ITaskService {
     }
 
     @Override
-    public Task delete(Long id) {
+    public Task delete(Integer id) {
         return taskDao.delete(id);
     }
 

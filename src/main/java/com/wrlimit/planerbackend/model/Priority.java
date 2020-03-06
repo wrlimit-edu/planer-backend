@@ -8,7 +8,7 @@ import java.util.Objects;
 @Document
 public class Priority {
     @Id
-    private Long id;
+    private Integer id;
     private String name;
     private String color;
 
@@ -20,17 +20,17 @@ public class Priority {
         this.color = color;
     }
 
-    public Priority(Long id, String name, String color) {
+    public Priority(Integer id, String name, String color) {
         this.id = id;
         this.name = name;
         this.color = color;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

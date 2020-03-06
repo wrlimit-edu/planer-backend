@@ -5,6 +5,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PriorityMongoRepository extends MongoRepository<Priority, Long> {
+public interface PriorityMongoRepository extends MongoRepository<Priority, Integer> {
     Priority findByName(String name);
 }
