@@ -24,7 +24,7 @@ public class PriorityServiceImpl implements IPriorityService {
     }
 
     @Override
-    public Priority get(Integer id) {
+    public Priority get(String id) {
         return priorityDao.get(id);
     }
 
@@ -34,7 +34,7 @@ public class PriorityServiceImpl implements IPriorityService {
     }
 
     @Override
-    public Priority delete(Integer id) {
+    public Priority delete(String id) {
         return priorityDao.delete(id);
     }
 

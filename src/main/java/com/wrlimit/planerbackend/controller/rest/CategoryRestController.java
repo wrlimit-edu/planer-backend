@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/api/category")
+@RequestMapping("api/category")
 public class CategoryRestController {
     private final ICategoryService categoryService;
 
@@ -16,28 +16,29 @@ public class CategoryRestController {
         this.categoryService = categoryService;
     }
 
-    @PostMapping("/create")
+    @GetMapping
+    public List<Category> getAll() {
+        return categoryService.getAll();
+    }
+
+    @PostMapping
     public Category create(@RequestBody Category category) {
         return categoryService.create(category);
     }
 
-    @GetMapping("/get/{id}")
-    public Category get(@PathVariable("id") Integer id) {
+    @GetMapping("{id}")
+    public Category get(@PathVariable("id") String id) {
         return categoryService.get(id);
     }
 
-    @PostMapping("/update")
+    @PutMapping
     public Category update(@RequestBody Category category) {
         return categoryService.update(category);
     }
 
-    @GetMapping("/delete/{id}")
-    public Category delete(@PathVariable("id") Integer id) {
+    @DeleteMapping("{id}")
+    public Category delete(@PathVariable("id") String id) {
         return categoryService.delete(id);
     }
 
-    @RequestMapping("/list")
-    public List<Category> getAll() {
-        return categoryService.getAll();
-    }
 }

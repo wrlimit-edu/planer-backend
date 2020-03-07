@@ -4,6 +4,7 @@ import com.wrlimit.planerbackend.dao.task.interfaces.ITaskDao;
 import com.wrlimit.planerbackend.model.Task;
 import com.wrlimit.planerbackend.service.task.interfaces.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public class TaskServiceImpl implements ITaskService {
     private final ITaskDao taskDao;
 
     @Autowired
-    public TaskServiceImpl(ITaskDao taskDao) {
+    public TaskServiceImpl(@Qualifier("mongo") ITaskDao taskDao) {
         this.taskDao = taskDao;
     }
 
@@ -23,7 +24,7 @@ public class TaskServiceImpl implements ITaskService {
     }
 
     @Override
-    public Task get(Integer id) {
+    public Task get(String id) {
         return taskDao.get(id);
     }
 
@@ -33,7 +34,7 @@ public class TaskServiceImpl implements ITaskService {
     }
 
     @Override
-    public Task delete(Integer id) {
+    public Task delete(String id) {
         return taskDao.delete(id);
     }
 

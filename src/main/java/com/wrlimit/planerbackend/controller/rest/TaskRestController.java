@@ -16,28 +16,28 @@ public class TaskRestController {
         this.taskService = taskService;
     }
 
-    @PostMapping("/create")
+    @GetMapping
+    public List<Task> getAll() {
+        return taskService.getAll();
+    }
+
+    @PostMapping
     public Task create(@RequestBody Task task) {
         return taskService.create(task);
     }
 
-    @GetMapping("/get/{id}")
-    public Task get(@PathVariable("id") Integer id) {
+    @GetMapping("{id}")
+    public Task get(@PathVariable("id") String id) {
         return taskService.get(id);
     }
 
-    @PostMapping("/update")
+    @PutMapping
     public Task update(@RequestBody Task task) {
         return taskService.update(task);
     }
 
-    @GetMapping("/delete/{id}")
-    public Task delete(@PathVariable("id") Integer id) {
+    @DeleteMapping("{id}")
+    public Task delete(@PathVariable("id") String id) {
         return taskService.delete(id);
-    }
-
-    @RequestMapping("/list")
-    public List<Task> getAll() {
-        return taskService.getAll();
     }
 }

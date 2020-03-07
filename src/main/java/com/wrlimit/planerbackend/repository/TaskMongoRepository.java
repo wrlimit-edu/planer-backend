@@ -5,6 +5,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TaskMongoRepository extends MongoRepository<Task, Integer> {
+public interface TaskMongoRepository extends MongoRepository<Task, String> {
     Task findByName(String name);
 }

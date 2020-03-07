@@ -9,7 +9,7 @@ import java.util.Objects;
 @Document
 public class Task {
     @Id
-    private Integer id;
+    private String id;
     private String name;
     private Category category;
     private Priority priority;
@@ -27,7 +27,7 @@ public class Task {
         this.date = date;
     }
 
-    public Task(Integer id, String name, Category category, Priority priority, boolean completed, LocalDate date) {
+    public Task(String id, String name, Category category, Priority priority, boolean completed, LocalDate date) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -36,11 +36,11 @@ public class Task {
         this.date = date;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -100,7 +100,7 @@ public class Task {
     @Override
     public String toString() {
         return "Task{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", category=" + category +
                 ", priority=" + priority +

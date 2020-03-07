@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/api/priority")
+@RequestMapping("api/priority")
 public class PriorityRestController {
     private final IPriorityService priorityService;
 
@@ -16,28 +16,28 @@ public class PriorityRestController {
         this.priorityService = priorityService;
     }
 
-    @PostMapping("/create")
+    @GetMapping
+    public List<Priority> getAll() {
+        return priorityService.getAll();
+    }
+
+    @PostMapping
     public Priority create(@RequestBody Priority priority) {
         return priorityService.create(priority);
     }
 
-    @GetMapping("/get/{id}")
-    public Priority get(@PathVariable("id") Integer id) {
+    @GetMapping("{id}")
+    public Priority get(@PathVariable("id") String id) {
         return priorityService.get(id);
     }
 
-    @PostMapping("/update")
+    @PutMapping
     public Priority update(@RequestBody Priority priority) {
         return priorityService.update(priority);
     }
 
-    @GetMapping("/delete/{id}")
-    public Priority delete(@PathVariable("id") Integer id) {
+    @DeleteMapping("{id}")
+    public Priority delete(@PathVariable("id") String id) {
         return priorityService.delete(id);
-    }
-
-    @RequestMapping("/list")
-    public List<Priority> getAll() {
-        return priorityService.getAll();
     }
 }

@@ -21,14 +21,11 @@ public class PriorityDaoMongoImpl implements IPriorityDao {
 
     @Override
     public Priority create(Priority priority) {
-        Integer lastId = this.getAll().stream()
-                .mapToInt(Priority::getId).max().orElse(0);
-        priority.setId(lastId + 1);
         return priorityRepository.save(priority);
     }
 
     @Override
-    public Priority get(Integer id) {
+    public Priority get(String id) {
         return priorityRepository.findById(id).orElse(null);
     }
 
@@ -38,7 +35,7 @@ public class PriorityDaoMongoImpl implements IPriorityDao {
     }
 
     @Override
-    public Priority delete(Integer id) {
+    public Priority delete(String id) {
         Priority priority = this.get(id);
         priorityRepository.deleteById(id);
         return priority;

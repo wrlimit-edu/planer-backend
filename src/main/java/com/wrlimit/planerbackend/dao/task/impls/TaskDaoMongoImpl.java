@@ -1,15 +1,16 @@
 package com.wrlimit.planerbackend.dao.task.impls;
 
 import com.wrlimit.planerbackend.dao.task.interfaces.ITaskDao;
-import com.wrlimit.planerbackend.model.Category;
 import com.wrlimit.planerbackend.model.Task;
 import com.wrlimit.planerbackend.repository.TaskMongoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@Qualifier("mongo")
 public class TaskDaoMongoImpl implements ITaskDao {
     private final TaskMongoRepository taskRepository;
 
@@ -20,14 +21,11 @@ public class TaskDaoMongoImpl implements ITaskDao {
 
     @Override
     public Task create(Task task) {
-        Integer lastId = this.getAll().stream()
-                .mapToInt(Task::getId).max().orElse(0);
-        task.setId(lastId + 1);
         return taskRepository.save(task);
     }
 
     @Override
-    public Task get(Integer id) {
+    public Task get(String id) {
         return taskRepository.findById(id).orElse(null);
     }
 
@@ -37,7 +35,7 @@ public class TaskDaoMongoImpl implements ITaskDao {
     }
 
     @Override
-    public Task delete(Integer id) {
+    public Task delete(String id) {
         Task task = this.get(id);
         taskRepository.deleteById(id);
         return task;

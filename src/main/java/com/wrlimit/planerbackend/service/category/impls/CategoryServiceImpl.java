@@ -4,6 +4,7 @@ import com.wrlimit.planerbackend.dao.category.interfaces.ICategoryDao;
 import com.wrlimit.planerbackend.model.Category;
 import com.wrlimit.planerbackend.service.category.interfaces.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public class CategoryServiceImpl implements ICategoryService {
     private final ICategoryDao categoryDao;
 
     @Autowired
-    public CategoryServiceImpl(ICategoryDao categoryDao) {
+    public CategoryServiceImpl(@Qualifier("mongo") ICategoryDao categoryDao) {
         this.categoryDao = categoryDao;
     }
 
@@ -23,7 +24,7 @@ public class CategoryServiceImpl implements ICategoryService {
     }
 
     @Override
-    public Category get(Integer id) {
+    public Category get(String id) {
         return categoryDao.get(id);
     }
 
@@ -33,7 +34,7 @@ public class CategoryServiceImpl implements ICategoryService {
     }
 
     @Override
-    public Category delete(Integer id) {
+    public Category delete(String id) {
         return categoryDao.delete(id);
     }
 
