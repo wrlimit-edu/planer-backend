@@ -1,9 +1,11 @@
 package com.wrlimit.planerbackend.controller.rest;
 
+import com.wrlimit.planerbackend.model.Category;
 import com.wrlimit.planerbackend.model.Task;
 import com.wrlimit.planerbackend.service.task.interfaces.ITaskService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 @RestController
@@ -39,5 +41,10 @@ public class TaskRestController {
     @DeleteMapping("{id}")
     public Task delete(@PathVariable("id") String id) {
         return taskService.delete(id);
+    }
+
+    @RequestMapping("category")
+    public List<Task> getAllByCategory(@RequestBody Category category) {
+        return taskService.getAllByCategory(category);
     }
 }

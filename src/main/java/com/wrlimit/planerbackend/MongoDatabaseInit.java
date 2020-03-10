@@ -89,15 +89,15 @@ public class MongoDatabaseInit {
                         Arrays.asList(
                                 new Priority(
                                         "Низкий",
-                                        "#fcc"
+                                        "#fee"
                                 ),
                                 new Priority(
                                         "Средний",
-                                        "#f99"
+                                        "#faa"
                                 ),
                                 new Priority(
                                         "Высокий",
-                                        "#f66"
+                                        "#f55"
                                 ),
                                 new Priority(
                                         "Срочно",
